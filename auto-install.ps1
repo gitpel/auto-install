@@ -138,9 +138,6 @@ Remove-Item "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*" -ErrorAction SilentlyCont
 Remove-Item "$env:WINDIR\Web\Screen\*.*" -ErrorAction SilentlyContinue
 Remove-Item "$env:WINDIR\Web\Wallpaper\Theme1\*.*" -ErrorAction SilentlyContinue
 
-Remove-Item -Path "%AppData%\roaming\Microsoft\Windows\Themes\cachedfiles\*.*" -Force -ErrorAction SilentlyContinue
-Remove-Item -Path "%AppData%\roaming\Microsoft\Windows\Themes\TranscodedWallpaper.jpg" -Force -ErrorAction SilentlyContinue
-
 Copy-Item "$Main_Directory\auto-install\Backgrounds\unsplash-04.jpg" "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\4K\Wallpaper\Windows\"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Screen\"
@@ -151,6 +148,9 @@ Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginX -Val
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginY -Value "0" -Force | Out-Null
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -Value "0" -Force | Out-Null
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value "2" -Force | Out-Null
+
+Remove-Item -Path "$env:appdata\roaming\Microsoft\Windows\Themes\cachedfiles\*.*" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:appdata\roaming\Microsoft\Windows\Themes\TranscodedWallpaper.jpg" -Force -ErrorAction SilentlyContinue
 
 icacls "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg" /setowner "NT SERVICE\TrustedInstaller"
 icacls "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*" /setowner "NT SERVICE\TrustedInstaller"
