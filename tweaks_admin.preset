@@ -30,7 +30,7 @@ SetDEPOptOut
 DisableUpdateRestart
 DisableSharedExperiences
 DisableRemoteAssistance
-EnableRemoteDesktop
+DisableRemoteDesktop
 DisableAutoplay
 DisableAutorun
 DisableLockScreen
