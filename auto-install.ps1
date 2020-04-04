@@ -147,7 +147,7 @@ Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Value "$en
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginX -Value "0" -Force | Out-Null
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginY -Value "0" -Force | Out-Null
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -Value "0" -Force | Out-Null
-Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value "2" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value "1" -Force | Out-Null
 
 Remove-Item -Path "$env:appdata\roaming\Microsoft\Windows\Themes\cachedfiles\*.*" -Force -ErrorAction SilentlyContinue
 Remove-Item -Path "$env:appdata\roaming\Microsoft\Windows\Themes\TranscodedWallpaper.jpg" -Force -ErrorAction SilentlyContinue
