@@ -146,11 +146,11 @@ Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\4K\W
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Screen\"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Wallpaper\Theme1\"
 
-#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Value "$env:windir\Web\Wallpaper\Windows\img0.jpg" -Force | Out-Null
-#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginX -Value "0" -Force | Out-Null
-#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginY -Value "0" -Force | Out-Null
-#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -Value "0" -Force | Out-Null
-#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value "2" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Value "$env:windir\Web\Wallpaper\Windows\img0.jpg" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginX -Value "0" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginY -Value "0" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -Value "0" -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value "2" -Force | Out-Null
 
 icacls "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg" /setowner "NT SERVICE\TrustedInstaller"
 icacls "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*" /setowner "NT SERVICE\TrustedInstaller"
