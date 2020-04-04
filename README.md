@@ -11,5 +11,5 @@ Start-Process powershell -Verb runas -ArgumentList "-NoProfile -InputFormat None
 ## Online Install include Chocolatey
 
 ```powershell
-Start-Process powershell -Verb runas -ArgumentList "-NoProfile -InputFormat None -ExecutionPolicy Bypass -Command [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://github.com/gitpel/auto-install'))"; Exit
+Start-Process powershell -Verb runas -ArgumentList "-NoProfile -InputFormat None -ExecutionPolicy Bypass -Command [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/gitpel/auto-install/master/auto-install.ps1'))"; Exit
 ```
