@@ -8,7 +8,7 @@ Write-Host -ForegroundColor Red @"
  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_\    \ \_____\  \ \_____\ 
   \/_____/   \/_/   \/_/  \/_/   \/_/     \/_____/   \/_____/ 
                                                               
-   For Family and Friends with love ❤️
+   For Family and Friends with love
 
 "@
 
@@ -119,6 +119,7 @@ If ([bool](Get-Content $Git_Root_CA_File -Raw | Select-String -Pattern $Root_CA 
     Add-Content $Git_Root_CA_File $Root_CA
 }
 
+# Git Clone
 & "$env:PROGRAMFILES\Git\cmd\git.exe" clone --recurse-submodules --depth 1 "https://github.com/gitpel/auto-install.git" "$Main_Directory\auto-install"
 & "$Main_Directory\auto-install\Win10-Initial-Setup-Script\Win10.ps1" -include "$Main_Directory\auto-install\Win10-Initial-Setup-Script\Win10.psm1" -preset "$Main_Directory\auto-install\tweaks_admin.preset"
 
@@ -127,22 +128,39 @@ takeown /f "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*"
 takeown /f "$env:WINDIR\Web\Screen\*.*"
 takeown /f "$env:WINDIR\Web\Wallpaper\Theme1\*.*"
 
-icacls "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg" /Grant "Administrators:(F)"
-icacls "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*" /Grant "Administrators:(F)"
-icacls "$env:WINDIR\Web\Screen\*.*" /Grant "Administrators:(F)"
-icacls "$env:WINDIR\Web\Wallpaper\Theme1\*.*" /Grant "Administrators:(F)"
+icacls "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg" /grant "Administrators:(F)"
+icacls "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*" /grant "Administrators:(F)"
+icacls "$env:WINDIR\Web\Screen\*.*" /grant "Administrators:(F)"
+icacls "$env:WINDIR\Web\Wallpaper\Theme1\*.*" /grant "Administrators:(F)"
 
-Remove-Item "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg"
-Remove-Item "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*"
-Remove-Item "$env:WINDIR\Web\Screen\*.*"
-Remove-Item "$env:WINDIR\Web\Wallpaper\Theme1\*.*"
+Remove-Item "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg" -ErrorAction SilentlyContinue
+Remove-Item "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*" -ErrorAction SilentlyContinue
+Remove-Item "$env:WINDIR\Web\Screen\*.*" -ErrorAction SilentlyContinue
+Remove-Item "$env:WINDIR\Web\Wallpaper\Theme1\*.*" -ErrorAction SilentlyContinue
+
+Remove-Item -Path "%AppData%\roaming\Microsoft\Windows\Themes\cachedfiles\*.*" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "%AppData%\roaming\Microsoft\Windows\Themes\TranscodedWallpaper.jpg" -Force -ErrorAction SilentlyContinue
 
 Copy-Item "$Main_Directory\auto-install\Backgrounds\unsplash-04.jpg" "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\4K\Wallpaper\Windows\"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Screen\"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Wallpaper\Theme1\"
 
+#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Value "$env:windir\Web\Wallpaper\Windows\img0.jpg" -Force | Out-Null
+#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginX -Value "0" -Force | Out-Null
+#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperOriginY -Value "0" -Force | Out-Null
+#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -Value "0" -Force | Out-Null
+#Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Value "2" -Force | Out-Null
 
+icacls "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg" /setowner "NT SERVICE\TrustedInstaller"
+icacls "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*" /setowner "NT SERVICE\TrustedInstaller"
+icacls "$env:WINDIR\Web\Screen\*.*" /setowner "NT SERVICE\TrustedInstaller"
+icacls "$env:WINDIR\Web\Wallpaper\Theme1\*.*" /setowner "NT SERVICE\TrustedInstaller"
+
+icacls "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg" /remove "Administrators:(F)"
+icacls "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*" /remove "Administrators:(F)"
+icacls "$env:WINDIR\Web\Screen\*.*" /remove "Administrators:(F)"
+icacls "$env:WINDIR\Web\Wallpaper\Theme1\*.*" /remove "Administrators:(F)"
 
 Stop-Process -ProcessName explorer
 
