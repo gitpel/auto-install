@@ -55,21 +55,6 @@ FbQu
 -----END CERTIFICATE-----
 "@ 
 
-# Change Colors
-$Background_Color = 'Black'
-$Host.UI.RawUI.BackgroundColor = $Background_Color
-$Host.UI.RawUI.ForegroundColor = 'White'
-$Host.PrivateData.ErrorForegroundColor = 'Red'
-$Host.PrivateData.ErrorBackgroundColor = $Background_Color
-$Host.PrivateData.WarningForegroundColor = 'Yellow'
-$Host.PrivateData.WarningBackgroundColor = $Background_Color
-$Host.PrivateData.DebugForegroundColor = 'Yellow'
-$Host.PrivateData.DebugBackgroundColor = $Background_Color
-$Host.PrivateData.VerboseForegroundColor = 'Green'
-$Host.PrivateData.VerboseBackgroundColor = $Background_Color
-$Host.PrivateData.ProgressForegroundColor = 'Blue'
-$Host.PrivateData.ProgressBackgroundColor = $Background_Color
-
 If (![bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544")) {
     Write-Host "Re-running with administrative privileges..."
     Start-Process powershell -Verb runas -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File $PSCommandPath"
@@ -160,5 +145,6 @@ Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Wall
 
 Stop-Process -ProcessName explorer
 
-Write-Host -NoNewLine 'Press any key to continue...'
+Write-Host -NoNewLine 'Press any key to exit...'
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
 Exit
