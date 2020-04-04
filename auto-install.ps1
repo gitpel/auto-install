@@ -99,7 +99,6 @@ $Chocolatey_Packeges = @(
     "openssl.light"
     "crystaldiskmark"
     "jre8"
-    "microsoft-teams.install"
     "office365business"
 )
 
@@ -142,6 +141,8 @@ Copy-Item "$Main_Directory\auto-install\Backgrounds\unsplash-04.jpg" "$env:WINDI
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\4K\Wallpaper\Windows\"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Screen\"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Wallpaper\Theme1\"
+
+
 
 Stop-Process -ProcessName explorer
 
