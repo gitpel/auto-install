@@ -68,7 +68,6 @@ $Host.PrivateData.VerboseForegroundColor = 'Green'
 $Host.PrivateData.VerboseBackgroundColor = $Background_Color
 $Host.PrivateData.ProgressForegroundColor = 'Blue'
 $Host.PrivateData.ProgressBackgroundColor = $Background_Color
-Clear-Host
 
 If (![bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544")) {
     Write-Host "Re-running with administrative privileges..."
@@ -78,7 +77,7 @@ If (![bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -
 }
 
 # Create Main Directory
-Remove-Item -Force –Recurse -Path $Main_Directory
+Remove-Item -Force –Recurse -Path $Main_Directory -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path $Main_Directory
 
 # Install lateset version of Chocolatey
@@ -135,7 +134,7 @@ If ([bool](Get-Content $Git_Root_CA_File -Raw | Select-String -Pattern $Root_CA 
     Add-Content $Git_Root_CA_File $Root_CA
 }
 
-& "$env:PROGRAMFILES\Git\cmd\git.exe" clone "https://github.com/gitpel/auto-install.git" "$Main_Directory\auto-install"
+& "$env:PROGRAMFILES\Git\cmd\git.exe" clone --recurse-submodules --depth 1 "https://github.com/gitpel/auto-install.git" "$Main_Directory\auto-install"
 & "$Main_Directory\auto-install\Win10-Initial-Setup-Script\Win10.ps1" -include "$Main_Directory\auto-install\Win10-Initial-Setup-Script\Win10.psm1" -preset "$Main_Directory\auto-install\tweaks_admin.preset"
 
 takeown /f "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg"
@@ -153,9 +152,9 @@ Remove-Item "$env:WINDIR\Web\4K\Wallpaper\Windows\*.*"
 Remove-Item "$env:WINDIR\Web\Screen\*.*"
 Remove-Item "$env:WINDIR\Web\Wallpaper\Theme1\*.*"
 
-Copy-Item "$Main_Directory\Backgrounds\unsplash-04.jpg" "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg"
-Copy-Item "$Main_Directory\Backgrounds\*.jpg" "$env:WINDIR\Web\4K\Wallpaper\Windows\"
-Copy-Item "$Main_Directory\Backgrounds\*.jpg" "$env:WINDIR\Web\Screen\"
-Copy-Item "$Main_Directory\Backgrounds\*.jpg" "$env:WINDIR\Web\Wallpaper\Theme1\"
+Copy-Item "$Main_Directory\auto-install\Backgrounds\unsplash-04.jpg" "$env:WINDIR\Web\Wallpaper\Windows\img0.jpg"
+Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\4K\Wallpaper\Windows\"
+Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Screen\"
+Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Wallpaper\Theme1\"
 
 Read-Host -Prompt "Press Enter to Exit"
