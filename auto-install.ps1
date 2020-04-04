@@ -8,6 +8,7 @@ Write-Host -ForegroundColor Red @"
  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_\    \ \_____\  \ \_____\ 
   \/_____/   \/_/   \/_/  \/_/   \/_/     \/_____/   \/_____/ 
                                                               
+   For Family and Friends with love ❤️
 
 "@
 
@@ -157,4 +158,7 @@ Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\4K\W
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Screen\"
 Copy-Item "$Main_Directory\auto-install\Backgrounds\*.jpg" "$env:WINDIR\Web\Wallpaper\Theme1\"
 
-Read-Host -Prompt "Press Enter to Exit"
+Stop-Process -ProcessName explorer
+
+Write-Host -NoNewLine 'Press any key to continue...'
+Exit
