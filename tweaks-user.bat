@@ -1,1 +1,1 @@
-﻿@powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0\Win10-Initial-Setup-Script\Win10.ps1" -include "%~dp0\Win10-Initial-Setup-Script\Win10.psm1" -preset "%~dp0\tweaks-user.bat"
+@powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0Win10-Initial-Setup-Script\Win10.ps1" -include "%~dp0Win10-Initial-Setup-Script\Win10.psm1" -preset "%~dp0tweaks-user.bat"
