@@ -89,7 +89,7 @@ $Chocolatey_Packeges = @(
     "adobereader"
     "notepadplusplus.install"
     "teamviewer"
-    "chrome-remote-desktop-host"
+    "chrome-remote-desktop-chrome"
     "transmission"
     "vlc"
     "windirstat"
