@@ -67,19 +67,11 @@ Remove-Item -Force –Recurse -Path $Main_Directory -ErrorAction SilentlyContinu
 New-Item -ItemType Directory -Force -Path $Main_Directory
 
 # Install lateset version of Chocolatey
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 $Chocolatey_Packeges = @(
-    "vcredist2010"
-    "vcredist2015"
-    "vcredist2008"
-    "vcredist2013"
-    "vcredist140"
-    "vcredist2012"
-    "vcredist2005"
-    "vcredist2017"
-    "7zip.install"
-    "git.install"
+    "7zip"
+    "git"
     "sysinternals"
     "wget"
     "curl"
@@ -94,13 +86,11 @@ $Chocolatey_Packeges = @(
     "vlc"
     "windirstat"
     "bluescreenview"
-    "cpu-z.install"
-    "crystaldiskinfo.install"
+    "cpu-z"
+    "crystaldiskinfo"
     "openoffice"
     "openssl.light"
     "crystaldiskmark"
-    "jre8"
-    "office365business"
 )
 
 choco upgrade -y all
